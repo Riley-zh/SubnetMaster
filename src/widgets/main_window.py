@@ -7,10 +7,9 @@
 
 import sys
 from pathlib import Path
-from PySide6.QtWidgets import (QApplication, QMainWindow, QTabWidget, 
-                               QMenuBar, QStatusBar, QMessageBox, QFileDialog)
-from PySide6.QtCore import Qt
-from PySide6.QtGui import QAction
+from PyQt5.QtWidgets import (QApplication, QMainWindow, QTabWidget, 
+                               QMenuBar, QStatusBar, QMessageBox, QFileDialog, QAction)
+from PyQt5.QtCore import Qt
 
 from widgets.basic_calc_widget import BasicCalcWidget
 from widgets.subnet_widget import SubnetWidget
@@ -21,14 +20,18 @@ from utils.config_manager import ConfigManager
 
 
 class SubnetCalculator(QMainWindow):
-    def __init__(self, config: ConfigManager = None):
+    def __init__(self, config = None):
+        super().__init__()
+        self.config = config or ConfigManager()
+        super().__init__()
+        self.config = config or ConfigManager()
         super().__init__()
         self.config = config or ConfigManager()
         self.setWindowTitle("子网计算器v5.0")
         
         # 设置窗口尺寸
-        width = self.config.get("window_width", 1100)
-        height = self.config.get("window_height", 800)
+        width = int(self.config.get("window_width", 1100) or 1100)
+        height = int(self.config.get("window_height", 800) or 800)
         self.resize(width, height)
         
         # 设置窗口图标
@@ -40,7 +43,7 @@ class SubnetCalculator(QMainWindow):
         self.init_ui()
         
         # 设置上次使用的标签页
-        last_tab = self.config.get("last_tab", 0)
+        last_tab = int(self.config.get("last_tab", 0) or 0)
         self.tabs.setCurrentIndex(last_tab)
 
     def init_ui(self):
@@ -52,9 +55,13 @@ class SubnetCalculator(QMainWindow):
     def create_menu(self):
         """创建菜单栏"""
         menu = self.menuBar()
+        if menu is None:
+            return
         
         # 文件菜单
         file_menu = menu.addMenu("文件")
+        if file_menu is None:
+            return
         save_action = QAction("保存结果", self)
         save_action.setShortcut("Ctrl+S")
         save_action.triggered.connect(self.save_all_results)
@@ -67,6 +74,8 @@ class SubnetCalculator(QMainWindow):
 
         # 视图菜单
         view_menu = menu.addMenu("视图")
+        if view_menu is None:
+            return
         toggle_theme = QAction("切换浅色/暗色主题", self)
         toggle_theme.setShortcut("Ctrl+T")
         toggle_theme.triggered.connect(self.toggle_theme)
@@ -74,6 +83,8 @@ class SubnetCalculator(QMainWindow):
 
         # 帮助菜单
         help_menu = menu.addMenu("帮助")
+        if help_menu is None:
+            return
         help_action = QAction("使用说明", self)
         help_action.setShortcut("F1")
         help_action.triggered.connect(self.show_help)
@@ -139,7 +150,7 @@ class SubnetCalculator(QMainWindow):
     def show_help(self):
         """显示帮助信息"""
         QMessageBox.information(self, "使用说明",
-                                "功能与原版一致，界面升级到 PySide6。\n"
+                                "功能与原版一致，界面升级到 PyQt5。\n"
                                 "通过菜单“视图→切换浅色/暗色主题”可更换外观。\n\n"
                                 "快捷键:\n"
                                 "Ctrl+S: 保存结果\n"
@@ -152,17 +163,18 @@ class SubnetCalculator(QMainWindow):
         QMessageBox.information(self, "关于",
                                 "高级子网计算器 v5.0\n"
                                 "作者：Riley\n"
-                                "PySide6 重构版本\n\n"
+                                "PyQt5 重构版本\n\n"
                                 "功能特性:\n"
                                 "• 基本计算: 计算IP地址相关信息\n"
                                 "• 子网划分: 按子网数量或主机数量划分\n"
                                 "• 超网计算: 多个网络合并为超网\n"
                                 "• 主题切换: 支持浅色和暗色主题")
 
-    def closeEvent(self, event):
+    def closeEvent(self, a0):
         """窗口关闭事件"""
         # 保存窗口尺寸
         if self.config:
             self.config.set("window_width", self.width())
             self.config.set("window_height", self.height())
-        event.accept()
+        if a0 is not None:
+            a0.accept()

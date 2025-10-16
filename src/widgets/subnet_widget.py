@@ -7,11 +7,11 @@
 
 from math import log2, ceil
 import ipaddress
-from PySide6.QtWidgets import (QWidget, QVBoxLayout, QHBoxLayout, QGridLayout, QGroupBox,
+from PyQt5.QtWidgets import (QWidget, QVBoxLayout, QHBoxLayout, QGridLayout, QGroupBox,
                                QLabel, QLineEdit, QComboBox, QTreeWidget,
                                QTreeWidgetItem, QPushButton, QRadioButton,
                                QButtonGroup, QMessageBox)
-from PySide6.QtCore import Qt
+from PyQt5.QtCore import Qt
 
 
 class SubnetWidget(QWidget):

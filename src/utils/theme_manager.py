@@ -6,9 +6,9 @@
 """
 
 import sys
-from PySide6.QtWidgets import QApplication
-from PySide6.QtCore import Qt
-from PySide6.QtGui import QPalette, QColor, QFont
+from PyQt5.QtWidgets import QApplication
+from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QPalette, QColor, QFont
 
 from utils.style_manager import StyleManager
 

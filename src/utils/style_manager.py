@@ -5,9 +5,9 @@
 样式管理器类定义
 """
 
-from PySide6.QtCore import Qt
-from PySide6.QtGui import QFont, QPalette, QColor
-from PySide6.QtWidgets import QApplication
+from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QFont, QPalette, QColor
+from PyQt5.QtWidgets import QApplication
 
 
 class StyleManager:

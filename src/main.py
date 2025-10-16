@@ -6,8 +6,9 @@
 """
 
 import sys
-from PySide6.QtWidgets import QApplication
-from PySide6.QtCore import Qt, QCoreApplication
+from PyQt5.QtWidgets import QApplication
+from PyQt5.QtCore import Qt
+from PyQt5.QtCore import QCoreApplication
 
 from widgets.main_window import SubnetCalculator
 from utils.style_manager import StyleManager

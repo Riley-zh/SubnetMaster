@@ -4,13 +4,13 @@ from math import log2, ceil
 import ipaddress
 from pathlib import Path
 
-from PySide6.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout,
+from PyQt5.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout,
                                QTabWidget, QLabel, QLineEdit, QComboBox, QTextEdit,
                                QRadioButton, QButtonGroup, QPushButton, QTreeWidget,
                                QTreeWidgetItem, QFileDialog, QMessageBox, QGroupBox,
-                               QMenuBar, QStatusBar)
-from PySide6.QtCore import Qt, QCoreApplication
-from PySide6.QtGui import QAction, QFont, QPalette, QColor
+                               QMenuBar, QStatusBar, QAction)
+from PyQt5.QtCore import Qt, QCoreApplication
+from PyQt5.QtGui import QFont, QPalette, QColor
 
 
 class SubnetCalculator(QMainWindow):
@@ -106,14 +106,14 @@ class SubnetCalculator(QMainWindow):
 
     def show_help(self):
         QMessageBox.information(self, "使用说明",
-                                "功能与原版一致，界面升级到 PySide6。\n"
+                                "功能与原版一致，界面升级到 PyQt5。\n"
                                 "通过菜单“视图→切换浅色/暗色主题”可更换外观。")
 
     def show_about(self):
         QMessageBox.information(self, "关于",
                                 "高级子网计算器 v5.0\n"
                                 "作者：Sven\n"
-                                "PySide6 重构版本")
+                                "PyQt5 重构版本")
 
 
 # ------------------------------------------------------------
